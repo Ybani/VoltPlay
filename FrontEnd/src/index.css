@@ -1,0 +1,105 @@
+/* --------------------------------------------- */
+/* Tailwind Import                                */
+/* --------------------------------------------- */
+@import "tailwindcss";
+
+/* --------------------------------------------- */
+/* THEME COLORS – Gaming Neon Dark Mode           */
+/* --------------------------------------------- */
+@theme {
+  /* Base dark shades */
+  --color-bg-900: #0D0D0D;
+  --color-bg-800: #111827;
+  --color-bg-700: #1A1A1A;
+
+  /* Neon Accent Palette */
+  --color-neon-blue: #3B82F6;
+  --color-electric-blue: #00AEEF;
+
+  --color-electric-purple: #A855F7;
+  --color-purple-light: #8B5CF6;
+
+  --color-neon-green: #22C55E;
+  --color-green-light: #00FF7F;
+
+  --color-magenta: #EC4899;
+
+  /* UI */
+  --color-border: #2A2A2A;
+  --color-card: #141414;
+}
+
+/* --------------------------------------------- */
+/* Base Body                                      */
+/* --------------------------------------------- */
+body {
+  @apply bg-bg-800 text-white;
+  font-family: 'Inter', system-ui, Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* --------------------------------------------- */
+/* Typography                                     */
+/* --------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* --------------------------------------------- */
+/* Neon Gradient Title (for big headings)         */
+/* --------------------------------------------- */
+.gradient-heading {
+  background: linear-gradient(
+    90deg,
+    var(--color-neon-blue),
+    var(--color-electric-purple),
+    var(--color-magenta)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --------------------------------------------- */
+/* Section Scroll Offset for Sticky Header        */
+/* --------------------------------------------- */
+section[data-nav-id] {
+  scroll-margin-top: 80px;
+}
+
+/* --------------------------------------------- */
+/* Reveal Animation                                */
+/* --------------------------------------------- */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------- */
+/* Optional Card Styling                           */
+/* --------------------------------------------- */
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  @apply rounded-xl p-5 shadow-md;
+}
+
+/* --------------------------------------------- */
+/* Cool Neon Hover Effects                         */
+/* --------------------------------------------- */
+.neon-border:hover {
+  box-shadow:
+    0px 0px 8px var(--color-neon-blue),
+    0px 0px 12px var(--color-electric-purple);
+}
+
+.neon-text:hover {
+  text-shadow: 0 0 8px var(--color-neon-blue),
+               0 0 12px var(--color-electric-purple);
+}
