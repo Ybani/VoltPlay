@@ -14,7 +14,7 @@ function Login() {
       transition={{ duration: 0.5 }}
     >
       {/* Card */}
-      <div className="flex w-[900px] h-[550px] bg-[#1a1a24] rounded-2xl  overflow-hidden">
+      <div className="flex w-[900px] h-[550px] bg-bg-800 rounded-4xl  overflow-hidden">
         
         {/* Left side - Login form */}
         <div className="flex flex-col justify-center items-center w-1/2 p-10">
@@ -93,7 +93,7 @@ function Login() {
             src={logo}
             alt="Boy floating"
             className="h-[80%] object-contain z-10"
-            animate={{ y: [0, -20, 0] }} // subtle floating effect
+            animate={{ y: [0, -30, 0] }} // subtle floating effect
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
 

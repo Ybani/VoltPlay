@@ -90,7 +90,7 @@ export function HeroCarousel() {
       {/* Bottom SVG wave */}
       <div className="absolute -bottom-px left-0 right-0">
         <svg className="w-full " viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path fill="#111827" d="M0 80L60 70C120 60 240 40 360 36C480 32 600 44 720 58C840 72 960 88 1080 90C1200 92 1320 80 1380 74L1440 68V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V80Z" />
+          <path fill="#0f0f16" d="M0 80L60 70C120 60 240 40 360 36C480 32 600 44 720 58C840 72 960 88 1080 90C1200 92 1320 80 1380 74L1440 68V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V80Z" />
         </svg>
       </div>
     </div>

@@ -9,11 +9,11 @@ export function Footer({ sidebarExpanded }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`bg-[#0f0f16] border-t border-red-900/30 py-12 transition-all duration-300 ${sidebarExpanded ? 'ml-64' : 'ml-20'}`}
+      className={`bg-[#0f0f16] border-t border-blue-500/30 py-12 transition-all duration-300 ${sidebarExpanded ? 'ml-64' : 'ml-20'}`}
     >
       <div className="px-6">
         {/* Top Section - Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 pb-12 border-b border-red-900/30">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 pb-12 border-b border-blue-500/30">
           {/* Secure Payment */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -21,7 +21,7 @@ export function Footer({ sidebarExpanded }) {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             whileHover={{ scale: 1.02 }}
-            className="flex items-start gap-4 p-6 bg-[#1a1a24] rounded-xl border border-red-900/30"
+            className="flex items-start gap-4 p-6 bg-[#1a1a24] rounded-xl border border-blue-500/30"
           >
             <motion.div
               animate={{
@@ -59,7 +59,7 @@ export function Footer({ sidebarExpanded }) {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             whileHover={{ scale: 1.02 }}
-            className="flex items-start gap-4 p-6 bg-[#1a1a24] rounded-xl border border-red-900/30"
+            className="flex items-start gap-4 p-6 bg-[#1a1a24] rounded-xl border border-blue-500/30"
           >
             <motion.div
               animate={{
@@ -100,7 +100,7 @@ export function Footer({ sidebarExpanded }) {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
             whileHover={{ scale: 1.02 }}
-            className="flex items-start gap-4 p-6 bg-[#1a1a24] rounded-xl border border-red-900/30"
+            className="flex items-start gap-4 p-6 bg-[#1a1a24] rounded-xl border border-blue-500/30"
           >
             <motion.div
               animate={{

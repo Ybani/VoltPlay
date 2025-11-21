@@ -3,9 +3,16 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 // Common pages
-import { Home } from './components/Home/Home.jsx';
+import { Home } from './components/pages/Home/Home.jsx';
 import NotFound from './components/Error/NotFound.jsx';
 import Login from './components/auth/Login.jsx';
+import CreateAccount from './components/auth/CreateAccount.jsx';
+// other pages
+import Keyboards from './components/pages/Keyboards.jsx';
+import Mice from './components/pages/Mice.jsx';
+import Console from './components/pages/Console.jsx';
+import Monitors from "./components/pages/Monitors.jsx";
+import Audio from "./components/pages/Audio.jsx";
 
 
 // AnimatedRoutes
@@ -31,6 +38,21 @@ function AnimatedRoutes() {
 
         />
         <Route
+          path="/keyboards"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <Keyboards />
+            </motion.div>
+          }
+
+        />
+        <Route
           path="/login"
           element={
             <motion.div
@@ -42,6 +64,19 @@ function AnimatedRoutes() {
               <Login />
             </motion.div>
           }
+        />
+        <Route 
+          path="/create-account" 
+          element={
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <CreateAccount />
+            </motion.div>
+          } 
         />
         <Route
           path="*"

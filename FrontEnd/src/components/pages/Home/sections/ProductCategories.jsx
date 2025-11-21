@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { motion } from 'motion/react';
-import { ProductCard } from './ProductCard';
+import { ProductCard } from '../../../layout/ProductCard';
 
 const categories = [
     {

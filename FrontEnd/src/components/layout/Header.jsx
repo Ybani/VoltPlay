@@ -10,7 +10,7 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-bg-800/90 backdrop-blur-lg "
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0f0f16]/50 backdrop-blur-lg border-b border-blue-500/30"
     >
       <div className="mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
