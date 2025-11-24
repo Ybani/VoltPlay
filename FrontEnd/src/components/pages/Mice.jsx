@@ -1,9 +1,5 @@
-import React from 'react'
+import { CategoryPage } from "../layout/CategoryPage";
 
-function Mice() {
-  return (
-    <div>Mice</div>
-  )
+export default function Mice() {
+  return <CategoryPage category="Mice" />;
 }
-
-export default Mice

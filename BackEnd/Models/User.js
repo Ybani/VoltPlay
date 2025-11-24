@@ -37,17 +37,29 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
-    }
+    },
+    cart: [
+        { productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' }, quantity: { type: Number, default: 1 } }
+    ],
+    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
+    productsBought: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }]
 },
     { timestamps: true }
 );
 
-
-
+// generetae the token 
+userSchema.methods.generateAuthToken = function () {
+    return jwt.sign({
+        _id: this._id,
+        isAdmin: this.isAdmin,
+        firstName: this.firstName,
+        lastName: this.lastName
+    }, process.env.TOKEN_SECRET, { expiresIn: '4h' });
+}
 
 
 const User = mongoose.model('User', userSchema);
-//validation function
+//validation user input
 function validateUser(obj) {
     const schema = Joi.object({
         firstName: Joi.string().trim().min(3).max(20).required(),
@@ -61,5 +73,16 @@ function validateUser(obj) {
     return schema.validate(obj);
 }
 
+//validate user login
+function validateLoginUser(obj) {
+    const schema = Joi.object({
+        email: Joi.string().trim().email().required(),
+        password: Joi.string().trim().min(8).required()
+    });
+    return schema.validate(obj);
+}
 
-export { User, validateUser };
+
+
+
+export { User, validateUser, validateLoginUser, };

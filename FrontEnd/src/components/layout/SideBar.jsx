@@ -9,11 +9,11 @@ export function Sidebar({ isExpanded, onExpandChange }) {
 
   const menuItems = [
     { icon: Home, label: 'Home', path: '/' },
-    { icon: Keyboard, label: 'Keyboards', path: '/keyboards' },
-    { icon: Mouse, label: 'Mice', path: '/mice' },
-    { icon: Monitor, label: 'PCs & Monitors', path: '/pcs-monitors' },
-    { icon: Gamepad2, label: 'Consoles', path: '/consoles' },
-    { icon: Headphones, label: 'Audio', path: '/audio' },
+    { icon: Keyboard, label: 'Keyboards', path: '/Keyboards' },
+    { icon: Mouse, label: 'Mice', path: '/Mice' },
+    { icon: Monitor, label: 'Monitors', path: '/Monitors' },
+    { icon: Gamepad2, label: 'Console', path: '/Console' },
+    { icon: Headphones, label: 'Audio', path: '/Audio' },
   ];
 
   return (
@@ -47,10 +47,10 @@ export function Sidebar({ isExpanded, onExpandChange }) {
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, x: 5 }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-all ${
+                className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-all focus:outline-none focus:ring-0 border ${
                   isActive
-                    ? 'bg-linear-to-r from-blue-600/30 to-cyan-600/30 text-blue-300 border border-blue-500/50'
-                    : 'text-gray-400 hover:text-white hover:bg-blue-900/20'
+                    ? 'bg-linear-to-r from-blue-600/30 to-cyan-600/30 text-blue-300 border-blue-500/50'
+                    : 'text-gray-400 hover:text-white hover:bg-blue-900/20 border-transparent'
                 }`}
               >
                 <item.icon className="w-6 h-6 shrink-0" />

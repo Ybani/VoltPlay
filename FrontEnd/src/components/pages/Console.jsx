@@ -1,9 +1,5 @@
-import React from 'react'
+import { CategoryPage } from "../layout/CategoryPage";
 
-function Console() {
-  return (
-    <div>Console</div>
-  )
+export default function Console() {
+  return <CategoryPage category="Console" />;
 }
-
-export default Console

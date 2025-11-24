@@ -1,9 +1,5 @@
-import React from 'react'
+import { CategoryPage } from "../layout/CategoryPage";
 
-function Audio() {
-  return (
-    <div>Audio</div>
-  )
+export default function Audio() {
+  return <CategoryPage category="Audio" />;
 }
-
-export default Audio

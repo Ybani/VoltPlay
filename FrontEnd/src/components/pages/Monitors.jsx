@@ -1,9 +1,5 @@
-import React from 'react'
+import { CategoryPage } from "../layout/CategoryPage";
 
-function Monitors() {
-  return (
-    <div>Monitors</div>
-  )
+export default function Monitors() {
+  return <CategoryPage category="Monitors" />;
 }
-
-export default Monitors

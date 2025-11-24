@@ -2,29 +2,61 @@ import { ShoppingCart, Heart } from 'lucide-react';
 import { IconButton, Chip } from '@mui/material';
 import { motion } from 'motion/react';
 import Swal from 'sweetalert2';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export function ProductCard({ product }) {
-    const getBadgeColor = (badge) => ({
-        background: 'linear-gradient(to right, #dc2626, #991b1b)',
-        color: 'white'
-    });
+export function ProductCard({ product, onCartUpdate }) {
+    const navigate = useNavigate();
 
-    const handleAddToCart = () => {
-        Swal.fire({
-            title: 'Added to Cart!',
-            html: `<p><strong>${product.name}</strong> has been added to your cart.</p>`,
-            icon: 'success',
-            background: '#1a1a24',
-            color: '#fff',
-            confirmButtonColor: '#dc2626',
-            iconColor: '#ef4444',
-            showCancelButton: true,
-            confirmButtonText: 'View Cart',
-            cancelButtonText: 'Continue Shopping',
-            customClass: {
-                popup: 'border border-red-500/30',
-            },
-        });
+    const handleAddToCart = async () => {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'You must login first!',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return;
+        }
+
+        try {
+            const res = await axios.post("http://localhost:6969/api/users/cart",
+                { productId: product._id, quantity: 1 },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            const result = await Swal.fire({
+                title: 'Added to Cart!',
+                html: `<p><strong>${product.name}</strong> has been added to your cart.</p>`,
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonText: 'View Cart',
+                cancelButtonText: 'Continue Shopping',
+                background: '#1a1a24',
+                color: '#fff',
+            });
+            if (result.isConfirmed) navigate('/cart');
+
+            // Notify parent (Header) to refresh cart count
+            if (onCartUpdate) onCartUpdate(res.data);
+
+            // Dispatch a global cartUpdated event so Header (or any listener) can refetch and animate
+            window.dispatchEvent(new CustomEvent('cartUpdated', {
+                detail: {
+                    action: 'add',
+                    productId: product._id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                }
+            }));
+
+        } catch (err) {
+            console.error(err);
+            Swal.fire({ icon: 'error', title: 'Failed to add to cart' });
+        }
     };
 
     const handleAddToWishlist = () => {
@@ -53,23 +85,7 @@ export function ProductCard({ product }) {
             whileHover={{ scale: 1.05 }}
             className="group relative bg-bg-700 rounded-xl overflow-hidden border border-red-900/30 hover:border-red-500/50 transition-all"
         >
-            {product.badge && (
-                <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="absolute top-4 right-4 z-10"
-                >
-                    <Chip
-                        label={product.badge}
-                        size="small"
-                        sx={{
-                            ...getBadgeColor(product.badge),
-                            fontWeight: 'bold',
-                        }}
-                    />
-                </motion.div>
-            )}
+
 
             <div className="relative h-64 overflow-hidden bg-[#0f0f16]">
                 <motion.div
@@ -77,7 +93,7 @@ export function ProductCard({ product }) {
                     transition={{ duration: 0.3 }}
                 >
                     <img
-                        src={product.image}
+                        src={product.productPictures?.[0]?.url || '/placeholder.png'}
                         alt={product.name}
                         className="w-full h-full object-cover"
                     />

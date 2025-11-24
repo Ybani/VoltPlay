@@ -5,24 +5,15 @@ import {HeroCarousel} from "./sections/Hero.jsx";
 import { useState } from "react";
 import { ProductCategories } from "./sections/ProductCategories.jsx";
 // import { Footer } from "./sections/Footer.jsx";
-import MainLayout from "../../layout/MainLayout.jsx";
 
 export function Home() {
-  
   return (
-    <MainLayout>
-    <div className="min-h-screen bg-(--background) text-(--foreground)">
-      {/* <Header /> */}
-      {/* <Sidebar
-        isExpanded={sidebarExpanded}
-        onExpandChange={setSidebarExpanded}
-      /> */}
-      <main >
+    <div className="min-h-screen">
+      <main>
         <HeroCarousel />
         <ProductCategories />
       </main>
     </div>
-    </MainLayout>
   );
 }
 

@@ -33,6 +33,8 @@ function CreateAccount() {
                 text: "Password must be at least 8 characters long and contain at least one capital letter.",
                 icon: "error",
                 timer: 3000,
+                background: '#0a0a0f',
+                color: '#fff',
                 showConfirmButton: true
             });
             return;
@@ -42,7 +44,12 @@ function CreateAccount() {
             Swal.fire({
                 title: "Passwords do not match",
                 icon: "error",
-                timer: 2500,
+                background: '#0a0a0f',
+                color: '#fff',
+                iconColor: '#60a5fa',
+                customClass: {
+                    popup: 'border border-blue-500/30',
+                },
                 showConfirmButton: true
             });
             return;
@@ -75,6 +82,8 @@ function CreateAccount() {
                 text: err.response?.data?.message || "Error creating user",
                 icon: "error",
                 timer: 3000,
+                background: '#0a0a0f',
+                color: '#fff',
                 showConfirmButton: true,
                 draggable: true
             });

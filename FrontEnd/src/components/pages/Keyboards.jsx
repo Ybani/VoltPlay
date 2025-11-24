@@ -1,12 +1,5 @@
-import React from 'react'
-import MainLayout from "../layout/MainLayout.jsx";
+import { CategoryPage } from "../layout/CategoryPage";
 
-function Keyboards() {
-  return (
-    <MainLayout>
-    <div>Keyboards</div>
-    </MainLayout>
-  )
+export default function Keyboards() {
+  return <CategoryPage category="Keyboards" />;
 }
-
-export default Keyboards
