@@ -32,7 +32,7 @@ export function Footer({ sidebarExpanded }) {
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="p-3 bg-gradient-to-r from-green-600/20 to-emerald-600/20 rounded-lg"
+              className="p-3 bg-linear-to-r from-green-600/20 to-emerald-600/20 rounded-lg"
             >
               <Shield className="w-8 h-8 text-green-400" />
             </motion.div>
@@ -70,7 +70,7 @@ export function Footer({ sidebarExpanded }) {
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="p-3 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-lg"
+              className="p-3 bg-linear-to-r from-blue-600/20 to-cyan-600/20 rounded-lg"
             >
               <Truck className="w-8 h-8 text-cyan-400" />
             </motion.div>
@@ -111,7 +111,7 @@ export function Footer({ sidebarExpanded }) {
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="p-3 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg"
+              className="p-3 bg-linear-to-r from-purple-600/20 to-pink-600/20 rounded-lg"
             >
               <Mail className="w-8 h-8 text-purple-400" />
             </motion.div>

@@ -59,7 +59,7 @@ export function HeroCarousel() {
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
-                  className="text-6xl mb-4 bg-linear-to-r from-[var(--color-neon-blue)] via-[var(--color-electric-purple)] to-[var(--color-magenta)] bg-clip-text text-transparent font-bold drop-shadow-[0_0_12px_var(--color-neon-blue)]"
+                  className="text-6xl mb-4 bg-linear-to-r from-neon-blue via-electric-purple to-magenta bg-clip-text text-transparent font-bold drop-shadow-[0_0_12px_var(--color-neon-blue)]"
                 >
                   {slides[currentSlide].title}
                 </motion.h2>
@@ -77,7 +77,7 @@ export function HeroCarousel() {
                   transition={{ delay: 0.4, duration: 0.5 }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-8 px-8 py-4 bg-gradient-to-r from-[var(--color-neon-blue)] via-[var(--color-electric-purple)] to-[var(--color-magenta)] text-white font-bold rounded-lg shadow-[0_0_16px_var(--color-neon-blue)] transition-all"
+                  className="mt-8 px-8 py-4 bg-linear-to-r from-neon-blue via-electric-purple to-magenta text-white font-bold rounded-lg shadow-[0_0_16px_var(--color-neon-blue)] transition-all"
                 >
                   Shop Now
                 </motion.button>
