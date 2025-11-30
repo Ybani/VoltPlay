@@ -13,6 +13,16 @@ import Mice from './components/pages/Mice.jsx';
 import Console from './components/pages/Console.jsx';
 import Monitors from "./components/pages/Monitors.jsx";
 import Audio from "./components/pages/Audio.jsx";
+import SearchResults from './components/pages/SearchResults.jsx';
+import Cart from './components/pages/Cart.jsx';
+import Checkout from './components/pages/Checkout.jsx';
+import Wishlist from './components/pages/Wishlist.jsx';
+import ProductDetails from './components/pages/ProductDetails.jsx';
+import AdminDashboard from './components/pages/AdminDashboard.jsx';
+import ProductManager from './components/pages/ProductManager.jsx';
+import AdminSettings from './components/pages/AdminSettings.jsx';
+import AdminAIInsights from './components/pages/AdminAIInsights.jsx';
+import UserReviews from './components/pages/UserReviews.jsx';
 
 
 // AnimatedRoutes
@@ -35,7 +45,6 @@ function AnimatedRoutes() {
               <Home />
             </motion.div>
           }
-
         />
         <Route
           path="/keyboards"
@@ -50,7 +59,198 @@ function AnimatedRoutes() {
               <Keyboards />
             </motion.div>
           }
-
+        />
+        <Route
+          path="/mice"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <Mice />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/audio"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <Audio />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/consoles"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <Console />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/pcs-monitors"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <Monitors />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <SearchResults />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <Cart />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <Checkout />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <Wishlist />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <ProductDetails />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <AdminDashboard />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/admin/products"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ProductManager />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/admin/settings"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AdminSettings />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/admin/ai-insights"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AdminAIInsights />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/user/reviews"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <UserReviews />
+            </motion.div>
+          }
         />
         <Route
           path="/login"
@@ -65,8 +265,8 @@ function AnimatedRoutes() {
             </motion.div>
           }
         />
-        <Route 
-          path="/create-account" 
+        <Route
+          path="/create-account"
           element={
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -76,7 +276,7 @@ function AnimatedRoutes() {
             >
               <CreateAccount />
             </motion.div>
-          } 
+          }
         />
         <Route
           path="*"

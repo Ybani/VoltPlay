@@ -1,12 +1,34 @@
-import { Search, ShoppingCart, User } from 'lucide-react';
+import { Search, ShoppingCart, User, Heart, LogOut } from 'lucide-react';
 import { IconButton, Badge, Button, TextField, InputAdornment } from '@mui/material';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
+import { useAuth } from '../../context/AuthContext';
+import { useState } from 'react';
 
 
 export function Header() {
+  const { getCartCount } = useCart();
+  const { getWishlistCount } = useWishlist();
+  const { isAdmin, isAuthenticated, logout } = useAuth();
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -14,27 +36,31 @@ export function Header() {
     >
       <div className="mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          
+
           {/* Logo */}
-          <motion.div 
-            className="flex items-center ml-20"
-            whileHover={{ scale: 1.05 }}
-          >
-            <h1 className="text-3xl tracking-wider cursor-pointer font-display">
-              <span className="bg-linear-to-r from-neon-blue via-electric-purple to-magenta bg-clip-text text-transparent">
-                VOLT
-              </span>
-              <span className="text-white">PLAY</span>
-            </h1>
-          </motion.div>
+          <Link to="/">
+            <motion.div
+              className="flex items-center ml-20"
+              whileHover={{ scale: 1.05 }}
+            >
+              <h1 className="text-3xl tracking-wider cursor-pointer font-display">
+                <span className="bg-linear-to-r from-neon-blue via-electric-purple to-magenta bg-clip-text text-transparent">
+                  VOLT
+                </span>
+                <span className="text-white">PLAY</span>
+              </h1>
+            </motion.div>
+          </Link>
 
           {/* Search Bar */}
-          <div className="flex-1 max-w-2xl mx-8">
+          <form onSubmit={handleSearch} className="flex-1 max-w-2xl mx-8">
             <TextField
               fullWidth
               placeholder="Search for gaming gear..."
               variant="outlined"
               size="small"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -66,47 +92,93 @@ export function Header() {
                 },
               }}
             />
-          </div>
+          </form>
 
           {/* Right Icons */}
           <div className="flex items-center gap-4">
-            
-            {/* Cart */}
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <IconButton className="hover:bg-electric-purple/20">
-                <Badge 
-                  badgeContent={0} 
-                  sx={{ 
-                    '& .MuiBadge-badge': { 
-                      background: 'linear-gradient(to right, var(--color-neon-blue), var(--color-electric-purple))',
-                      color: 'white'
-                    } 
+
+            {/* Wishlist - Hidden for admin users */}
+            {!isAdmin && (
+              <Link to="/wishlist">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <IconButton className="hover:bg-red-500/20">
+                    <Badge
+                      badgeContent={getWishlistCount()}
+                      sx={{
+                        '& .MuiBadge-badge': {
+                          background: 'linear-gradient(to right, #ef4444, #ec4899)',
+                          color: 'white'
+                        }
+                      }}
+                    >
+                      <Heart className="w-6 h-6 text-gray-300 hover:text-red-500 transition-colors" />
+                    </Badge>
+                  </IconButton>
+                </motion.div>
+              </Link>
+            )}
+
+
+
+            {/* Cart - Hidden for admin users */}
+            {!isAdmin && (
+              <Link to="/cart">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <IconButton className="hover:bg-electric-purple/20">
+                    <Badge
+                      badgeContent={getCartCount()}
+                      sx={{
+                        '& .MuiBadge-badge': {
+                          background: 'linear-gradient(to right, var(--color-neon-blue), var(--color-electric-purple))',
+                          color: 'white'
+                        }
+                      }}
+                    >
+                      <ShoppingCart className="w-6 h-6 text-gray-300 hover:text-neon-blue transition-colors" />
+                    </Badge>
+                  </IconButton>
+                </motion.div>
+              </Link>
+            )}
+
+            {/* Login / Logout Button */}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              {isAuthenticated ? (
+                <Button
+                  onClick={handleLogout}
+                  variant="contained"
+                  startIcon={<LogOut className="w-5 h-5" />}
+                  sx={{
+                    background: 'linear-gradient(to right, var(--color-neon-blue), var(--color-electric-purple))',
+                    '&:hover': {
+                      background: 'linear-gradient(to right, var(--color-purple-light), var(--color-magenta))',
+                    },
+                    textTransform: 'none',
+                    borderRadius: '8px',
+                    padding: '8px 16px',
                   }}
                 >
-                  <ShoppingCart className="w-6 h-6 text-gray-300 hover:text-neon-blue transition-colors" />
-                </Badge>
-              </IconButton>
-            </motion.div>
-            
-            {/* Login Button */}
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                component={Link}
-                to="/login"
-                variant="contained"
-                startIcon={<User className="w-5 h-5" />}
-                sx={{
-                  background: 'linear-gradient(to right, var(--color-neon-blue), var(--color-electric-purple))',
-                  '&:hover': {
-                    background: 'linear-gradient(to right, var(--color-purple-light), var(--color-magenta))',
-                  },
-                  textTransform: 'none',
-                  borderRadius: '8px',
-                  padding: '8px 16px',
-                }}
-              >
-                Login
-              </Button>
+                  Sign Out
+                </Button>
+              ) : (
+                <Button
+                  component={Link}
+                  to="/login"
+                  variant="contained"
+                  startIcon={<User className="w-5 h-5" />}
+                  sx={{
+                    background: 'linear-gradient(to right, var(--color-neon-blue), var(--color-electric-purple))',
+                    '&:hover': {
+                      background: 'linear-gradient(to right, var(--color-purple-light), var(--color-magenta))',
+                    },
+                    textTransform: 'none',
+                    borderRadius: '8px',
+                    padding: '8px 16px',
+                  }}
+                >
+                  Login
+                </Button>
+              )}
             </motion.div>
 
           </div>

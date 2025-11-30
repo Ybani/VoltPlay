@@ -1,9 +1,11 @@
 import express from "express";
-import { createUserCtrl } from "../Controllers/auth.js";
+import { createUserCtrl, loginUserCtrl } from "../Controllers/auth.js";
 //router object
 const router = express.Router();
 //register route
-router.post("/register",createUserCtrl);
+router.post("/register", createUserCtrl);
+//login route
+router.post("/login", loginUserCtrl);
 
 
 

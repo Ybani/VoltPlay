@@ -1,33 +1,49 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sidebar } from "./SideBar";
+import { AdminSidebar } from "./AdminSidebar";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
 const MainLayout = ({ children }) => {
     const [sidebarExpanded, setSidebarExpanded] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        // Check if user is admin from localStorage
+        const adminStatus = localStorage.getItem('voltplay_isAdmin');
+        setIsAdmin(adminStatus === 'true');
+    }, []);
+
     return (
-        <div className="flex min-h-screen bg-[#0f0f16]">
+        <div className="flex h-screen overflow-hidden bg-[#0f0f16]">
 
-            {/* Sidebar */}
-            <Sidebar
-                isExpanded={sidebarExpanded}
-                onExpandChange={setSidebarExpanded}
-            />
+            {/* Sidebar - Fixed (Admin or Regular) */}
+            {isAdmin ? (
+                <AdminSidebar
+                    isExpanded={sidebarExpanded}
+                    onExpandChange={setSidebarExpanded}
+                />
+            ) : (
+                <Sidebar
+                    isExpanded={sidebarExpanded}
+                    onExpandChange={setSidebarExpanded}
+                />
+            )}
 
-            {/* Main Content */}
+            {/* Main Content Area */}
             <div className="flex flex-col flex-1">
 
-                {/* Header */}
+                {/* Header - Fixed */}
                 <Header />
 
-                {/* Page content (changes depending on the route) */}
-                <main className={`transition-all duration-300 ${sidebarExpanded ? 'ml-64' : 'ml-20'}`}>
+                {/* Scrollable Page content (only this area scrolls) */}
+                <main className={`flex-1 overflow-y-auto transition-all duration-300 pt-20 ${sidebarExpanded ? 'ml-64' : 'ml-20'}`}>
                     {children}
-                </main>
 
-                {/* Footer */}
-                <Footer sidebarExpanded={sidebarExpanded} />
+                    {/* Footer inside scrollable area */}
+                    <Footer sidebarExpanded={sidebarExpanded} />
+                </main>
             </div>
         </div>
     );
